@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.glass.sample.stopwatch;
+package com.creativevikings.powerlevel;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +25,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.lang.Runnable;
+
+import com.google.android.glass.sample.stopwatch.R;
 
 /**
  * Activity showing the stopwatch options menu.

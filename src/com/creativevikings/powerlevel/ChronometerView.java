@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.glass.sample.stopwatch;
+package com.creativevikings.powerlevel;
 
 import android.content.Context;
 import android.os.Handler;
@@ -25,6 +25,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
+
+import com.google.android.glass.sample.stopwatch.R;
 
 /**
  * View used to display draw a running Chronometer.

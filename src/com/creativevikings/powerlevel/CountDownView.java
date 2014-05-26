@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.glass.sample.stopwatch;
+package com.creativevikings.powerlevel;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -27,6 +27,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
+
+import com.google.android.glass.sample.stopwatch.R;
 
 /**
  * Animated countdown going from {@code mTimeSeconds} to 0.

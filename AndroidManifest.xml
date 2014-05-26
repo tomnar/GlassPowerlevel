@@ -32,14 +32,14 @@
         android:label="@string/app_name" >
 
         <activity
-            android:name="com.google.android.glass.sample.stopwatch.MenuActivity"
+            android:name="com.creativevikings.powerlevel.MenuActivity"
             android:label="@string/app_name"
             android:theme="@style/MenuTheme"
             android:enabled="true" >
         </activity>
 
         <service
-            android:name="com.google.android.glass.sample.stopwatch.StopwatchService"
+            android:name="com.creativevikings.powerlevel.StopwatchService"
             android:icon="@drawable/ic_lap"
             android:label="@string/app_name"
             android:enabled="true"

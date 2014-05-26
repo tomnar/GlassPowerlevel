@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.glass.sample.stopwatch;
+package com.creativevikings.powerlevel;
 
 import com.google.android.glass.timeline.DirectRenderingCallback;
 
