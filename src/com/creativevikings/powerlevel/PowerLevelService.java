@@ -43,7 +43,8 @@ public class PowerLevelService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (mLiveCard == null) {
+        /*
+    	if (mLiveCard == null) {
             mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
 
             // Keep track of the callback to remove it before unpublishing.
@@ -58,6 +59,21 @@ public class PowerLevelService extends Service {
             
         } else {
             mLiveCard.navigate();
+        }
+        */
+    	if (mLiveCard == null) {
+            mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
+
+            // Enable direct rendering.
+            mLiveCard.setDirectRenderingEnabled(true);
+            mLiveCard.getSurfaceHolder().addCallback(
+                    new LiveCardRenderer());
+
+            Intent myIntent = new Intent(this, MenuActivity.class);
+            mLiveCard.setAction(PendingIntent.getActivity(this, 0, myIntent, 0));
+            mLiveCard.publish(LiveCard.PublishMode.REVEAL);
+        } else {
+            // Card is already published.
         }
 
         return START_STICKY;
