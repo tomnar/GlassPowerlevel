@@ -26,8 +26,6 @@ import android.view.MenuItem;
 
 import java.lang.Runnable;
 
-import com.google.android.glass.sample.stopwatch.R;
-
 /**
  * Activity showing the stopwatch options menu.
  */
@@ -60,7 +58,7 @@ public class MenuActivity extends Activity {
 
                     @Override
                     public void run() {
-                        stopService(new Intent(MenuActivity.this, StopwatchService.class));
+                        stopService(new Intent(MenuActivity.this, PowerLevelService.class));
                     }
                 });
                 return true;

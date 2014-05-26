@@ -28,7 +28,7 @@ import android.util.Log;
 /**
  * Service owning the LiveCard living in the timeline.
  */
-public class StopwatchService extends Service {
+public class PowerLevelService extends Service {
 
     private static final String LIVE_CARD_TAG = "stopwatch";
 
@@ -55,6 +55,7 @@ public class StopwatchService extends Service {
             mLiveCard.setAction(PendingIntent.getActivity(this, 0, menuIntent, 0));
             mLiveCard.attach(this);
             mLiveCard.publish(PublishMode.REVEAL);
+            
         } else {
             mLiveCard.navigate();
         }

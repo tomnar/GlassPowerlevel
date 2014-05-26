@@ -26,8 +26,6 @@ import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
 
-import com.google.android.glass.sample.stopwatch.R;
-
 /**
  * View used to display draw a running Chronometer.
  *
