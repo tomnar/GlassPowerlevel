@@ -1,7 +1,14 @@
 package com.creativevikings.powerlevel;
 
+import java.util.Random;
+
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.RectF;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.View;
 
@@ -18,22 +25,27 @@ public class LiveCardRenderer implements DirectRenderingCallback{
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 		// TODO Auto-generated method stub
+		Log.d("lol","surfaceChanged");
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		 mHolder = holder;
-	     updateRendering();
+		Log.d("lol","surfaceCreated");
+		mPaused = false;
+		mHolder = holder;
+		updateRendering();
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
+		Log.d("lol","surfaceDestroyed");
 		mHolder = null;
         updateRendering();		
 	}
 
 	@Override
 	public void renderingPaused(SurfaceHolder holder, boolean paused) {
+		Log.d("lol","renderingPaused");
 		mPaused = paused;
         updateRendering();		
 	}
@@ -44,6 +56,8 @@ public class LiveCardRenderer implements DirectRenderingCallback{
     	//Check if it should render, if yes start a new thread
         boolean shouldRender = (mHolder != null) && !mPaused;
         boolean rendering = mRenderThread != null;
+        
+        Log.d("lol","updateRendering, with: shouldRender = "  + shouldRender + ", rendering = " + rendering);
 
         if (shouldRender != rendering) {
             if (shouldRender) {
@@ -54,18 +68,43 @@ public class LiveCardRenderer implements DirectRenderingCallback{
                 mRenderThread = null;
             }
         }
-    }
+    }    
     
+    private void drawSomething(Canvas canvas){
+    	Paint paint = new Paint(); 
+        paint.setColor(Color.WHITE); 
+        paint.setStyle(Style.FILL); 
+        canvas.drawPaint(paint); 
+
+        paint.setColor(Color.BLACK); 
+        paint.setTextSize(20); 
+        canvas.drawText("Some Text", 10, 25, paint); 
+        
+        // paint a rectangular shape that fill the surface.
+        int border = 100;
+        int width = 150;//canvas.getWidth()-20; not width
+        int height = 150;//canvas.getHeight()-20; not height
+        RectF r = new RectF(border, border, width, height);
+        paint.setColor(Color.RED); 
+        canvas.drawRect(r , paint );
+    }
 
     // Draws the view in the SurfaceHolder's canvas. (called from thread)
     private void draw() {
         Canvas canvas;
         try {
             canvas = mHolder.lockCanvas();
+            
+            
+                        
         } catch (Exception e) {
+        	Log.d("error", e.toString());
             return;
         }
         if (canvas != null) {
+        	
+        	drawSomething(canvas);
+            
             // Draw on the canvas.
             mHolder.unlockCanvasAndPost(canvas);
         }
@@ -98,5 +137,4 @@ public class LiveCardRenderer implements DirectRenderingCallback{
             }
         }
     }
-
 }

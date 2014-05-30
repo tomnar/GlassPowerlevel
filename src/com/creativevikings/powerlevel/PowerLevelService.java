@@ -23,16 +23,15 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 /**
  * Service owning the LiveCard living in the timeline.
  */
 public class PowerLevelService extends Service {
 
-    private static final String LIVE_CARD_TAG = "stopwatch";
+    private static final String LIVE_CARD_TAG = "powerlevel";
 
-    private ChronometerDrawer mCallback;
+    private LiveCardRenderer mCallback;
 
     private LiveCard mLiveCard;
 
@@ -61,19 +60,24 @@ public class PowerLevelService extends Service {
             mLiveCard.navigate();
         }
         */
+    	
     	if (mLiveCard == null) {
             mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
+            mCallback = new LiveCardRenderer();
 
             // Enable direct rendering.
-            mLiveCard.setDirectRenderingEnabled(true);
-            mLiveCard.getSurfaceHolder().addCallback(
-                    new LiveCardRenderer());
+            mLiveCard.setDirectRenderingEnabled(true).getSurfaceHolder().addCallback(mCallback);
 
-            Intent myIntent = new Intent(this, MenuActivity.class);
-            mLiveCard.setAction(PendingIntent.getActivity(this, 0, myIntent, 0));
-            mLiveCard.publish(LiveCard.PublishMode.REVEAL);
+            Intent menuIntent = new Intent(this, MenuActivity.class);
+            menuIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            mLiveCard.setAction(PendingIntent.getActivity(this, 0, menuIntent, 0));
+            mLiveCard.attach(this);
+            mLiveCard.publish(PublishMode.REVEAL);
+            
+            
         } else {
             // Card is already published.
+        	mLiveCard.navigate();
         }
 
         return START_STICKY;
