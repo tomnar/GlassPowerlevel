@@ -18,4 +18,5 @@
     <string name="show_hello_word">show powerlevel</string>
     <string name="app_name">StopWatch</string>
     <string name="stop">Stop</string>
+    <string name="stop2">Stop also</string>
 </resources>

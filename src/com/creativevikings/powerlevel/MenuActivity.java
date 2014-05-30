@@ -18,7 +18,6 @@ package com.creativevikings.powerlevel;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,7 +41,7 @@ public class MenuActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.stopwatch, menu);
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
 
@@ -54,6 +53,15 @@ public class MenuActivity extends Activity {
                 // Stop the service at the end of the message queue for proper options menu
                 // animation. This is only needed when starting a new Activity or stopping a Service
                 // that published a LiveCard.
+                post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        stopService(new Intent(MenuActivity.this, PowerLevelService.class));
+                    }
+                });
+                return true;
+            case R.id.stop2:
                 post(new Runnable() {
 
                     @Override

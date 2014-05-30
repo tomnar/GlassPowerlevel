@@ -19,4 +19,8 @@
         android:id="@+id/stop"
         android:title="@string/stop"
         android:icon="@drawable/ic_stop" />
+    <item
+        android:id="@+id/stop2"
+        android:title="@string/stop2"
+        android:icon="@drawable/ic_stop" />
 </menu>
