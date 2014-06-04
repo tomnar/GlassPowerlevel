@@ -1,7 +1,7 @@
 GlassPowerlevel
 ===============
 
-This is an test app for Glass
+This is an test app for Glass!
 
 ===============
 
